@@ -101,6 +101,6 @@ app.post('/admin/delete/:id', async (req, res) => {
 });
 
 const PORT = 3000;
-app.listen(PORT, () => {
+app.listen(PORT||process.env.PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
