@@ -4,12 +4,13 @@ const multer = require('multer');
 const path = require('path');
 const app = express();
 const Product = require('./models/Producttt');
-// إعدادات
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
-// إعداد multer لرفع الصور
+const cors = require('cors');
+app.use(cors());
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'public/uploads/');
