@@ -82,7 +82,7 @@ app.post('/admin/edit/:id', upload.single('image'), async (req, res) => {
       image: imagePath
     });
 
-    res.redirect('/adingadmin');
+    res.redirect('/admin');
   } catch (error) {
     console.error(error);
     res.status(500).send('Error updating product');
