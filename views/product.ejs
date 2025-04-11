@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="<%= product.description.substring(0, 160) %>">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourdomain.com/product/<%= product._id %>">
+  <meta property="og:title" content="<%= product.name %> | متجرنا الإلكتروني">
+  <meta property="og:description" content="<%= product.description.substring(0, 160) %>">
+  <meta property="og:image" content="<%= product.image %>">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://yourdomain.com/product/<%= product._id %>">
+  <meta property="twitter:title" content="<%= product.name %> | متجرنا الإلكتروني">
+  <meta property="twitter:description" content="<%= product.description.substring(0, 160) %>">
+  <meta property="twitter:image" content="<%= product.image %>">
+
+  <link rel="stylesheet" href="/styess.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <title><%= product.name %> | متجرنا الإلكتروني</title>
+</head>
+<body class="product-page">
+  <header class="page-header">
+    <div class="container">
+      <a href="/" class="back-button">
+        <i class="fas fa-arrow-right"></i> العودة للمتجر
+      </a>
+    </div>
+  </header>
+
+  <main class="product-details-container">
+    <div class="container">
+      <article class="product-details">
+        <div class="product-gallery">
+          <div class="main-image">
+            <img src="<%= product.image %>" 
+                 alt="<%= product.name %>" 
+                 class="product-image"
+                 loading="lazy"
+                 width="600"
+                 height="600">
+          </div>
+        </div>
+
+        <div class="product-info">
+          <h1 class="product-title"><%= product.name %></h1>
+          
+          <div class="product-price">
+            <span class="price"><%= product.price %></span>
+            <span class="currency">$</span>
+          </div>
+
+          <div class="product-description">
+            <h2 class="section-title">تفاصيل المنتج</h2>
+            <p><%= product.description %></p>
+          </div>
+
+          <div class="product-actions">
+            <a href="https://wa.me/201023230170?text=<%= encodeURIComponent(`أريد شراء المنتج التالي:\n\n*${product.name}*\n\nالسعر: ${product.price}$\n\nالوصف: ${product.description.substring(0, 100)}...`) %>" 
+               class="whatsapp-button"
+               target="_blank"
+               rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> شراء عبر واتساب
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <div class="container">
+      <p>© 2023 متجرنا الإلكتروني. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+</body>
+</html>

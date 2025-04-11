@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة التحكم</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .input-field {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .submit-btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .delete-btn {
+      background-color: #f44336;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .product-form {
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>لوحة التحكم - إدارة المنتجات</h1>
+    
+    <h2>إضافة منتج جديد</h2>
+    <form method="POST" action="/admin/add" enctype="multipart/form-data" class="product-form">
+      <input type="text" name="name" placeholder="اسم المنتج" required class="input-field">
+      <input type="number" name="price" placeholder="السعر" required class="input-field">
+      <input type="file" name="image" required class="input-field">
+      <textarea name="description" placeholder="الوصف" class="input-field"></textarea>
+      <button type="submit" class="submit-btn">إضافة</button>
+    </form>
+
+    <h2>قائمة المنتجات</h2>
+    <% products.forEach(product => { %>
+      <form method="POST" action="/admin/edit/<%= product._id %>" enctype="multipart/form-data" class="product-form">
+        <input type="text" name="name" value="<%= product.name %>" class="input-field">
+        <input type="number" name="price" value="<%= product.price %>" class="input-field">
+        <div style="margin: 10px 0;">
+          <img src="<%= product.image %>" width="100" style="border: 1px solid #ddd;">
+        </div>
+        <input type="file" name="image" class="input-field">
+        <input type="hidden" name="existingImage" value="<%= product.image %>">
+        <textarea name="description" class="input-field"><%= product.description %></textarea>
+        <button type="submit" class="submit-btn">تحديث</button>
+      </form>
+      <form method="POST" action="/admin/delete/<%= product._id %>" style="display: inline;">
+        <button type="submit" class="delete-btn">حذف</button>
+      </form>
+      <hr>
+    <% }) %>
+  </div>
+</body>
+</html>

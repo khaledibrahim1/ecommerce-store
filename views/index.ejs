@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="متجر إلكتروني لبيع المنتجات المتنوعة">
+  <link rel="stylesheet" href="/style.css">
+  <title>المتجر الإلكتروني | عرض المنتجات</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  
+  <!-- Open Graph Meta Tags للتواصل الاجتماعي -->
+  <meta property="og:title" content="المتجر الإلكتروني">
+  <meta property="og:description" content="أفضل المنتجات بأفضل الأسعار">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.example.com">
+  <meta property="og:image" content="/logo.png">
+</head>
+<body>
+  <!-- هيكل الصفحة الرئيسية -->
+  <header class="header">
+    <nav class="navbar">
+      <!-- شريط التنقل -->
+    </nav>
+  </header>
+  
+  <main class="main-content">
+    <h1 class="page-title">المنتجات المتاحة</h1>
+    
+    <div class="products-container">
+      <% products.forEach(product => { %>
+        <article class="product-card" id="product-<%= product._id %>">
+          <figure class="product-image-container">
+            <img src="<%= product.image %>" 
+                 alt="<%= product.name %>" 
+                 class="product-image"
+                 width="200"
+                 height="200"
+                 loading="lazy">
+          </figure>
+          
+          <div class="product-details">
+            <h2 class="product-name"><%= product.name %></h2>
+            <p class="product-name"><%= product.description %></p>
+            
+            <div class="product-price">
+              <span class="price-value"><%= product.price %></span>
+              <span class="currency">$</span>
+            </div>
+            
+            <a href="/product/<%= product._id %>" 
+               class="details-link"
+               aria-label="تفاصيل المنتج <%= product.name %>">
+              عرض التفاصيل
+            </a>
+          </div>
+        </article>
+      <% }); %>
+    </div>
+  </main>
+  
+  <footer class="footer">
+    <!-- تذييل الصفحة -->
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="/main.js" defer></script>
+</body>
+</html>
