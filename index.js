@@ -32,14 +32,14 @@ mongoose.connect(process.env.MONGODB_URI)
 // Routes
 app.get('/', async (req, res) => {
   const products = await Product.find();
-  res.render('index', { products });
+  res.render('index.ejs', { products });
 });
 
 app.get('/product/:id', async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
     if (!product.additionalImages) product.additionalImages = [];
-    res.render('product', { product });
+    res.render('product.ejs', { product });
   } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');
@@ -48,7 +48,7 @@ app.get('/product/:id', async (req, res) => {
 
 app.get('/admin', async (req, res) => {
   const products = await Product.find();
-  res.render('admin', { products });
+  res.render('admin.ejs', { products });
 });
 
 // Add Product
